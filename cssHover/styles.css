@@ -25,10 +25,13 @@ body {
   background-size: cover;
   padding: 10rem 0 0;
   max-width: 35ch;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .card-content {
-  padding: 1.5em;
+  --padding: 1.5rem;
+  padding: var(--padding);
   background: linear-gradient(
     hsl(0 0% 0% / 0),
     hsl(0 0% 0% / 0.3) 20%,
@@ -38,14 +41,34 @@ body {
 
 .card-title {
   position: relative;
+  width: max-content;
 }
 
 .card-title::after {
   content: "";
   position: absolute;
-  height: 3px;
-  width: 100%;
-  left: 0;
+  height: 4px;
+  width: calc(100% + var(--padding));
+  left: calc(var(--padding) * -1);
   bottom: 0;
   background: var(--clr-accent-400);
+}
+
+.card-body {
+  color: rgb(255 255 255 / 0.85);
+}
+
+.button {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--clr-neutral-900);
+  background-color: var(--clr-accent-400);
+  padding: 0.5em 1.25em;
+  border-radius: 0.25em;
+}
+
+.button:hover,
+.button:active {
+  background-color: var(--clr-neutral-100);
 }
