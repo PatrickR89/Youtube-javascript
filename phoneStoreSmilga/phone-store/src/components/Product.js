@@ -61,4 +61,41 @@ const ProductWrapper = styled.div`
       background: rgb(247, 247, 247);
     }
   }
+
+  .card-img-top {
+    transition: all 0.5s linear;
+  }
+
+  .img-container {
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      .card-img-top {
+        transform: scale(1.2);
+      }
+
+      .cart-btn {
+        transform: translate(0%, 0%);
+      }
+    }
+  }
+
+  .cart-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0.2rem 0.4rem;
+    background: var(--lightBlue);
+    border: none;
+    color: var(--mainWhite);
+    font-size: 1.4rem;
+    border-radius: 0.5rem 0 0 0;
+    transition: all 0.5s linear;
+    transform: translate(100%, 100%);
+    &:hover {
+      color: var(--mainBlue);
+      cursor: pointer;
+    }
+  }
 `;
