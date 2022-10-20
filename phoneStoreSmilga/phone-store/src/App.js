@@ -7,6 +7,7 @@ import ProductList from "./components/ProductList";
 import Details from "./components/Details";
 import Default from "./components/Default";
 import Cart from "./components/Cart";
+import Modal from "./components/Modal";
 
 class App extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class App extends React.Component {
           <Route path="/cart" element={<Cart />} />
           <Route path="/*" element={<Default />} />
         </Routes>
+        <Modal />
       </>
     );
   }
