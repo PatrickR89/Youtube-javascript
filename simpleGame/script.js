@@ -1,3 +1,5 @@
+import { updateBird, setupBird } from "./bird.js";
+
 document.addEventListener("keypress", handleStart, { once: true });
 const title = document.querySelector("[data-title]");
 
@@ -9,12 +11,14 @@ function updateLoop(time) {
     return;
   }
 
-  console.log(time - lastTime);
+  const delta = time - lastTime;
+  updateBird(delta);
   lastTime = time;
   window.requestAnimationFrame(updateLoop);
 }
 function handleStart() {
   title.classList.add("hide");
+  setupBird();
   window.requestAnimationFrame(updateLoop);
 }
 
