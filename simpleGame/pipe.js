@@ -1,4 +1,4 @@
-const holeHeigth = 120;
+const holeHeigth = 200;
 const pipeInterval = 1500;
 const pipeSpeed = 0.75;
 let pipes = [];
@@ -30,6 +30,14 @@ export function setupPipes() {
   document.documentElement.style.setProperty("--pipe-width", pipeWidth);
   document.documentElement.style.setProperty("--hole-height", holeHeigth);
   timeSinceLastPipe = pipeInterval;
+
+  pipes.forEach((pipe) => {
+    pipe.remove();
+  });
+}
+
+export function getPipeRects() {
+  return pipes.flatMap((pipe) => pipe.rects());
 }
 
 function createPipe() {
@@ -56,6 +64,12 @@ function createPipe() {
     remove() {
       pipes = pipes.filter((p) => p !== pipe);
       pipeElem.remove();
+    },
+    rects() {
+      return [
+        topElem.getBoundingClientRect(),
+        bottomElem.getBoundingClientRect()
+      ];
     }
   };
 
