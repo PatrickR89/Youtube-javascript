@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/kute.js@2.2.4/dist/kute.min.js"></script>
     <style>
       body {
         margin: 0;
@@ -36,7 +37,7 @@
         background: #dd3f31;
       }
       .pink {
-        background: #ff0066;
+        background: #b40575;
       }
       .dark {
         background: #0f0f10;
@@ -102,6 +103,30 @@
       .custom-shape-divider-top-1667243280 .shape-fill {
         fill: #0f0f10;
       }
+
+      .spacer {
+        aspect-ratio: 960/300;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+
+      .layer1 {
+        background-image: url("./layer1Haikei.svg");
+      }
+
+      .layer2 {
+        background-image: url("./layer2Haikei.svg");
+      }
+
+      .flip {
+        transform: rotate(180deg);
+      }
+
+      .blob-motion {
+        position: absolute;
+        transform: translate(-20% 30%);
+      }
     </style>
     <title>Ripples</title>
   </head>
@@ -164,6 +189,8 @@
         </svg>
       </div>
     </section>
+
+    <div class="spacer layer1"></div>
     <section>
       <h1>Nice Curves</h1>
       <p>
@@ -173,15 +200,55 @@
         voluptatibus sed!
       </p>
     </section>
-    <section>
-      <h1>Nice Curves</h1>
-      <p>
+    <div class="spacer layer2 flip"></div>
+    <section class="pink">
+      <h1 style="z-index: 5">Nice Curves</h1>
+      <p style="z-index: 5">
         Facere commodi eaque ex enim pariatur, itaque corrupti ab praesentium
         sit maiores necessitatibus molestiae reprehenderit magnam laudantium
         similique dolorum dicta corporis dolorem! Accusamus, assumenda! Autem
         nemo repellat rerum aliquid cumque.
       </p>
+      <svg
+        id="visual"
+        viewBox="0 0 960 300"
+        class="blob-motion"
+        width="960"
+        height="300"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        version="1.1"
+      >
+        <g transform="translate(472.0736835814355 145.98251611594804)">
+          <path
+            id="blob1"
+            d="M87.5 -86C106.2 -68.8 109.1 -34.4 100.8 -8.2C92.6 17.9 73.2 35.8 54.5 59.3C35.8 82.8 17.9 111.9 0.1 111.8C-17.7 111.7 -35.4 82.4 -48 58.9C-60.7 35.4 -68.3 17.7 -77.2 -8.8C-86 -35.4 -96 -70.7 -83.4 -87.9C-70.7 -105 -35.4 -104 -0.5 -103.6C34.4 -103.1 68.8 -103.2 87.5 -86"
+            fill="#5a033a"
+          ></path>
+        </g>
+        <g
+          transform="translate(460.9830463350102 155.794084928399)"
+          style="visibility: hidden"
+        >
+          <path
+            id="blob2"
+            d="M82.4 -83.9C105.9 -58.9 123.5 -29.5 125.5 2C127.5 33.5 113.9 66.9 90.4 89.1C66.9 111.3 33.5 122.1 1.8 120.4C-29.9 118.6 -59.9 104.2 -72.4 82C-84.9 59.9 -79.9 29.9 -82.2 -2.2C-84.4 -34.4 -93.8 -68.8 -81.3 -93.8C-68.8 -118.8 -34.4 -134.4 -2.5 -131.9C29.5 -129.5 58.9 -108.9 82.4 -83.9"
+            fill="#5a033a"
+          ></path>
+        </g>
+      </svg>
+      <script>
+        const tween = KUTE.fromTo(
+          "#blob1",
+          { path: "#blob1" },
+          { path: "#blob2" },
+          { repeat: 999, duration: 3000, yoyo: true }
+        );
+
+        tween.start();
+      </script>
     </section>
+    <div class="spacer layer2"></div>
     <section>
       <h1>Nice Curves</h1>
       <p>
