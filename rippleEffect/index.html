@@ -17,6 +17,7 @@
         font-family: "Roboto Condensed", sans-serif;
         color: white;
         background: #202731;
+        overflow-x: hidden;
       }
 
       section {
@@ -40,6 +41,67 @@
       .dark {
         background: #0f0f10;
       }
+      .curves {
+        position: absolute;
+        height: 225px;
+        width: 100%;
+        bottom: 0;
+      }
+
+      .curves::before {
+        content: "";
+        display: block;
+        position: absolute;
+        border-radius: 100% 50%;
+        width: 55%;
+        height: 100%;
+        background: #202731;
+        transform: translate(85%, 60%);
+      }
+
+      .curves::after {
+        content: "";
+        display: block;
+        position: absolute;
+        border-radius: 100% 50%;
+        width: 55%;
+        height: 100%;
+        background: #3c31dd;
+        transform: translate(-4%, 40%);
+        z-index: -1;
+      }
+
+      .bubble::after {
+        content: "";
+        border-top-left-radius: 50% 100%;
+        border-top-right-radius: 50% 100%;
+        position: absolute;
+        bottom: 0;
+        height: 85%;
+        width: 100%;
+        background-color: #0f0f10;
+        z-index: -1;
+      }
+
+      .custom-shape-divider-top-1667243280 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .custom-shape-divider-top-1667243280 svg {
+        position: relative;
+        display: block;
+        width: calc(113% + 1.3px);
+        height: 285px;
+      }
+
+      .custom-shape-divider-top-1667243280 .shape-fill {
+        fill: #0f0f10;
+      }
     </style>
     <title>Ripples</title>
   </head>
@@ -52,6 +114,7 @@
         repellendus! Laudantium atque voluptas accusantium excepturi? Accusamus
         ipsa amet distinctio.
       </p>
+      <div class="curves"></div>
     </section>
     <section>
       <h1>Nice Curves</h1>
@@ -62,7 +125,7 @@
         facere est!
       </p>
     </section>
-    <section>
+    <section class="bubble">
       <h1>Nice Curves</h1>
       <p>
         Distinctio deserunt aut numquam culpa debitis expedita voluptas dicta id
@@ -70,7 +133,7 @@
         ullam! Iusto iste, repellendus atque sit vel minus maiores ab harum!
       </p>
     </section>
-    <section>
+    <section class="dark">
       <h1>Nice Curves</h1>
       <p>
         Temporibus ratione perspiciatis enim laboriosam delectus reprehenderit
@@ -79,7 +142,7 @@
         facilis aut vitae necessitatibus dolorum?
       </p>
     </section>
-    <section>
+    <section class="red">
       <h1>Nice Curves</h1>
       <p>
         Id aperiam sequi vitae ut nostrum quo fugiat amet aspernatur culpa
@@ -87,6 +150,19 @@
         reprehenderit labore ducimus, dicta debitis non animi sapiente unde.
         Cupiditate!
       </p>
+      <div class="custom-shape-divider-top-1667243280">
+        <svg
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+            class="shape-fill"
+          ></path>
+        </svg>
+      </div>
     </section>
     <section>
       <h1>Nice Curves</h1>
