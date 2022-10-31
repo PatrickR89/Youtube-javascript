@@ -26,6 +26,10 @@ export function getPassedPipesCount() {
   return passedPipesCount;
 }
 
+export function resetPipesPassed() {
+  passedPipesCount = 0;
+}
+
 export function setupPipes() {
   document.documentElement.style.setProperty("--pipe-width", pipeWidth);
   document.documentElement.style.setProperty("--hole-height", holeHeigth);

@@ -3,7 +3,8 @@ import {
   updatePipes,
   setupPipes,
   getPassedPipesCount,
-  getPipeRects
+  getPipeRects,
+  resetPipesPassed
 } from "./pipe.js";
 
 document.addEventListener("keypress", handleStart, { once: true });
@@ -28,6 +29,7 @@ function updateLoop(time) {
 function handleStart() {
   title.classList.add("hide");
   lastTime = null;
+  resetPipesPassed();
   setupBird();
   setupPipes();
   window.requestAnimationFrame(updateLoop);
