@@ -51,5 +51,25 @@
       </button>
     </form>
     <iframe id="output" name="textField"></iframe>
+
+    <script>
+      const buttons = document.querySelectorAll("button");
+      textField.document.designMode = "On";
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", () => {
+          let cmd = buttons[i].getAttribute("data-cmd");
+          if (buttons[i].name === "active") {
+            buttons[i].classList.toggle("active");
+          }
+
+          if (cmd === "insertImage" || cmd === "createLink") {
+            let url = prompt("Enter link here:", "");
+            textField.document.execCommand(cmd, false, url);
+          } else {
+            textField.document.execCommand(cmd, false, null);
+          }
+        });
+      }
+    </script>
   </body>
 </html>
