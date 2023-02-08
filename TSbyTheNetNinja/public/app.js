@@ -64,12 +64,64 @@ const ul = document.querySelector("ul");
 const list = new ListTemplate(ul);
 form.addEventListener("submit", (e) => {
     e.preventDefault();
+    let values = [
+        toFrom.value,
+        details.value,
+        amount.valueAsNumber
+    ];
     let doc;
     if (type.value === "invoice") {
-        doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber);
+        doc = new Invoice(...values);
     }
     else {
-        doc = new Payment(toFrom.value, details.value, amount.valueAsNumber);
+        doc = new Payment(...values);
     }
     list.render(doc, type.value, Position.end);
 });
+/*
+
+// GENERICS
+// add <extends object> to avoid using function for basic types
+
+const addUID = <T extends object>(obj: T) => {
+  let uid = Math.floor(Math.random() * 100);
+  return { ...obj, uid };
+};
+
+let docOne = addUID({ name: "yoshi", age: 40 });
+console.log(docOne);
+
+enum ResourceType {
+  book,
+  author,
+  film,
+  shopping,
+  person
+}
+interface Resource<T> {
+  uid: number;
+  resourceName: ResourceType;
+  data: T;
+}
+
+const docThree: Resource<object> = {
+  uid: 1,
+  resourceName: ResourceType.person,
+  data: { name: "shaun" }
+};
+
+const docFour: Resource<string[]> = {
+  uid: 2,
+  resourceName: ResourceType.shopping,
+  data: ["milk", "sugar", "salt"]
+};
+
+// tuples
+
+let arr = ["ryu", 25, true]
+
+let tup: [string, number, boolean] = ["ryu", 25, true]; // fixed types
+let student: [string, number];
+student = ["chun-li", 234]
+
+*/
