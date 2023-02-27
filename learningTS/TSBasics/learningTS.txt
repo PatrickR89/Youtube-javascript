@@ -1,0 +1,12 @@
+Core Types
+
+number - in js & ts, int and float 
+string - '' "" ``
+boolean - true, false 
+object - 
+array -
+
+Advanced
+
+tuples
+enum
