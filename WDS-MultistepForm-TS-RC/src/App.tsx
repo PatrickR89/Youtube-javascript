@@ -1,4 +1,7 @@
+import { UserForm } from "./UserForm";
 import { useMultistepForm } from "./useMultistepForm";
+import { AdressForm } from "./AdressForm";
+import { AccountForm } from "./AccountForm";
 
 function App() {
 	const {
@@ -9,7 +12,7 @@ function App() {
 		isLastStep,
 		previous,
 		next,
-	} = useMultistepForm([<div>one</div>, <div>two</div>]);
+	} = useMultistepForm([<UserForm />, <AdressForm />, <AccountForm />]);
 
 	return (
 		<div
