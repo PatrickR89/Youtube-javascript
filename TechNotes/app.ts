@@ -17,7 +17,8 @@ export default class ServerApp {
 	}
 
 	setup() {
-		this.app.use("/", express.static(path.join(__dirname, "/public")))
+		this.app.use(express.json())
+		this.app.use("/", express.static(path.join(__dirname, "public")))
 		this.app.use("/", this.router.returnRouter())
 	}
 

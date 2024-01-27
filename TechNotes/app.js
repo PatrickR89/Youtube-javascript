@@ -16,7 +16,8 @@ class ServerApp {
         this.createErrorPage();
     }
     setup() {
-        this.app.use("/", express_1.default.static(path_1.default.join(__dirname, "/public")));
+        this.app.use(express_1.default.json());
+        this.app.use("/", express_1.default.static(path_1.default.join(__dirname, "public")));
         this.app.use("/", this.router.returnRouter());
     }
     createErrorPage() {
