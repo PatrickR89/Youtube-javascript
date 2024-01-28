@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const dotenv_1 = __importDefault(require("dotenv"));
 const root_1 = __importDefault(require("./routes/root"));
 const path_1 = __importDefault(require("path"));
 const logger_1 = __importDefault(require("./middleware/logger"));
@@ -11,6 +12,7 @@ const errorHandler_1 = __importDefault(require("./middleware/errorHandler"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
 const corsOptions_1 = __importDefault(require("./config/corsOptions"));
+const mongoose_1 = __importDefault(require("mongoose"));
 class ServerApp {
     constructor() {
         this.app = (0, express_1.default)();
@@ -18,6 +20,7 @@ class ServerApp {
         this.port = Number(process.env.PORT || "3000");
         this.logger = new logger_1.default();
         this.errorHandler = new errorHandler_1.default();
+        dotenv_1.default.config();
         this.setup();
         this.listenOnPort();
         this.createErrorPage();
@@ -46,8 +49,16 @@ class ServerApp {
         this.app.use(this.errorHandler.handleError);
     }
     listenOnPort() {
-        this.app.listen(this.port, () => {
-            console.log(`App listening on port ${this.port}`);
+        mongoose_1.default.connection.once("open", () => {
+            console.log("Connected to Database on 27017");
+            this.app.listen(this.port, () => {
+                console.log(`App listening on port ${this.port}`);
+            });
+        });
+        mongoose_1.default.connection.on("error", (error) => {
+            console.log(error);
+            console.log("Error handled from Mongo");
+            this.errorHandler.logMongoError(error);
         });
     }
 }
