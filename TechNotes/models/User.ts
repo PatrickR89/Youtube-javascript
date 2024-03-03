@@ -1,42 +1,51 @@
-import mongoose, { Model, Schema, model } from "mongoose"
+import mongoose, { Model, Schema, model, ObjectId } from "mongoose"
 import MongoFactory from "./MongoFactory"
 
 export enum Roles {
 	employee = "Employee",
-	admin = "Admin",
+	admin = "Admin"
 }
 
 export interface User {
+	id?: string
 	username: string
 	password: string
 	roles?: Roles[]
 	active?: boolean
 }
-
+export interface UserDocument extends User, Document {}
+export interface UserModel extends Model<UserDocument> {}
 export class UserFactory extends MongoFactory {
-	createSchema(): Schema {
-		return new Schema({
+	userSchema: Schema<UserDocument, UserModel>
+	userModel: UserModel
+	constructor() {
+		super()
+		this.userSchema = this.createSchema()
+		this.userModel = this.createModel()
+	}
+	createSchema(): Schema<UserDocument, UserModel> {
+		return new Schema<UserDocument, UserModel>({
 			username: {
 				type: String,
-				required: true,
+				required: [true, "User must have a name"]
 			},
 			password: {
-				types: String,
-				required: true,
+				type: String,
+				required: [true, "User must have a password"]
 			},
 			roles: {
-				type: [Roles],
-				default: Roles.employee,
+				type: [String],
+				default: [Roles.employee]
 			},
 			active: {
 				type: Boolean,
-				default: true,
-			},
+				default: true
+			}
 		})
 	}
 
-	createModel() {
-		const userSchema = this.createSchema()
-		return model("User", userSchema)
+	createModel(): UserModel {
+		const userSchema = this.userSchema
+		return model<UserDocument, UserModel>("User", userSchema)
 	}
 }

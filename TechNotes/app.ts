@@ -1,6 +1,6 @@
 import express, { Request, Response, Express } from "express"
 import dotenv from "dotenv"
-import MainRouter from "./routes/root"
+import { MainRouter } from "./routes/Router"
 import path from "path"
 import Logger from "./middleware/logger"
 import ErrorHandler from "./middleware/errorHandler"

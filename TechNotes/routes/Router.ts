@@ -1,11 +1,12 @@
-import express, { Router, Request, Response } from "express"
+import { Router, Request, Response } from "express"
 import path from "path"
+import { UserRouter } from "./UserRouter"
 
-export default class MainRouter {
-	router: Router
+export class MainRouter {
+	router: Router = Router()
+	userRouter: Router = new UserRouter().createUserRoutes()
 
 	constructor() {
-		this.router = Router()
 		this.setupRoutes()
 	}
 
@@ -13,6 +14,8 @@ export default class MainRouter {
 		this.router.get("^/$|/index(.html)?", (req: Request, res: Response) => {
 			res.sendFile(path.join(__dirname, "..", "views", "index.html"))
 		})
+
+		this.router.use("/user", this.userRouter)
 	}
 
 	returnRouter(): Router {

@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from "mongoose"
+import mongoose, { Model, Schema, model, ObjectId } from "mongoose"
 import MongoFactory from "./MongoFactory"
 
 export interface Note {
@@ -8,6 +8,8 @@ export interface Note {
 	completed: boolean
 }
 
+export interface NoteDocument extends Note, Document {}
+export interface NoteModel extends Model<NoteDocument> {}
 export class NotesFactory extends MongoFactory {
 	createSchema(): Schema {
 		return new Schema(
@@ -36,7 +38,7 @@ export class NotesFactory extends MongoFactory {
 		)
 	}
 
-	createModel() {
+	createModel(): NoteModel {
 		const noteSchema = this.createSchema()
 		const AutoIncrement = require("mongoose-sequence")(mongoose)
 		noteSchema.plugin(AutoIncrement, {
@@ -44,6 +46,6 @@ export class NotesFactory extends MongoFactory {
 			id: "ticketNums",
 			start_seq: 500,
 		})
-		return model("Note", noteSchema)
+		return model<NoteDocument, NoteModel>("Note", noteSchema)
 	}
 }

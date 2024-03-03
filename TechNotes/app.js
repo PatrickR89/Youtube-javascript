@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const root_1 = __importDefault(require("./routes/root"));
+const Router_1 = require("./routes/Router");
 const path_1 = __importDefault(require("path"));
 const logger_1 = __importDefault(require("./middleware/logger"));
 const errorHandler_1 = __importDefault(require("./middleware/errorHandler"));
@@ -16,7 +16,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 class ServerApp {
     constructor() {
         this.app = (0, express_1.default)();
-        this.router = new root_1.default();
+        this.router = new Router_1.MainRouter();
         this.port = Number(process.env.PORT || "3000");
         this.logger = new logger_1.default();
         this.errorHandler = new errorHandler_1.default();

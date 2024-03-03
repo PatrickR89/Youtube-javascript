@@ -12,28 +12,33 @@ var Roles;
     Roles["admin"] = "Admin";
 })(Roles = exports.Roles || (exports.Roles = {}));
 class UserFactory extends MongoFactory_1.default {
+    constructor() {
+        super();
+        this.userSchema = this.createSchema();
+        this.userModel = this.createModel();
+    }
     createSchema() {
         return new mongoose_1.Schema({
             username: {
                 type: String,
-                required: true,
+                required: [true, "User must have a name"]
             },
             password: {
-                types: String,
-                required: true,
+                type: String,
+                required: [true, "User must have a password"]
             },
             roles: {
-                type: [Roles],
-                default: Roles.employee,
+                type: [String],
+                default: [Roles.employee]
             },
             active: {
                 type: Boolean,
-                default: true,
-            },
+                default: true
+            }
         });
     }
     createModel() {
-        const userSchema = this.createSchema();
+        const userSchema = this.userSchema;
         return (0, mongoose_1.model)("User", userSchema);
     }
 }
